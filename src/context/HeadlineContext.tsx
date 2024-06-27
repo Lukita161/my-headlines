@@ -1,11 +1,11 @@
 import { ReactNode, createContext, useReducer } from "react";
 import { Actions } from "../reducer/HeadlineReducer";
 import { HeadlineReducer, initialState } from "../reducer/HeadlineReducer";
-import { Headline } from "../types";
+import { FinallHeadline } from "../types";
 
 type HeadlineProps = {
     state: {
-        headlines: Headline;
+        headlines: FinallHeadline;
     }
     dispatch: React.Dispatch<Actions>
 }

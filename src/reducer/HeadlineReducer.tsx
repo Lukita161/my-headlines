@@ -1,12 +1,12 @@
 
-import { Headline } from '../types'
+import { FinallHeadline } from '../types'
 
 export type Actions = 
-{ type: 'get-top-headlines', payload: {result: Headline}} |
+{ type: 'get-top-headlines', payload: {result: FinallHeadline}} |
 { type: 'set-error-in-top-headlines' }
 
 type initialStateType = {
-    headlines: Headline
+    headlines: FinallHeadline
     error: boolean
 }
 
