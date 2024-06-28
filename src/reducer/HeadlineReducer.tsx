@@ -1,17 +1,20 @@
 
-import { FinallHeadline } from '../types'
+import { FinallHeadline, countryListType, countrySelect } from '../types'
 
 export type Actions = 
+{type: 'select-country-to-search', payload: {country: countryListType}} |
 { type: 'get-top-headlines', payload: {result: FinallHeadline}} |
 { type: 'set-error-in-top-headlines' }
 
 type initialStateType = {
+    country: countrySelect['code']
     headlines: FinallHeadline
     error: boolean
 }
 
 
 export const initialState = {
+    country: '',
     headlines: [],
     error: false
 }

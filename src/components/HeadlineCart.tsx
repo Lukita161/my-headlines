@@ -12,8 +12,8 @@ export const HeadlineCart = ()=> {
     return (
         <>
             {state.headlines.map(headline => (
-                <div className="flex flex-col min-w-[22rem] min-h-[23rem]  mb-4 justify-around flex-grow gap-5 bg-light-blue rounded-xl">
-                    <h1 className="text-sm text-pretty font-medium text-center p-1">{headline.title}</h1>
+                <div className="flex flex-col min-w-[22rem] min-h-[18rem] mb-4 justify-around flex-grow gap-5 bg-light-blue rounded-xl">
+                    <h1 className="text-base text-pretty font-medium text-center mt-1 p-1">{headline.title}</h1>
                     <div className="">
                         <img className="object-cover" src={headline.urlToImage} alt="imagen" />
                     </div>

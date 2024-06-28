@@ -4,7 +4,6 @@ import { headlinesSchema } from '../schema/schemas'
 // Esta funcion obtiene los datos de topHeadlines de la API
 export const fetchTopHeadlines = async()=> {
     try {
-        console.log(import.meta.env.VITE_API_KEY)
         const url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=15&apiKey=${import.meta.env.VITE_API_KEY}`
         const response = await fetch(url)
         const {articles} = await response.json()
