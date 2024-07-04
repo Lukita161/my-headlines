@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useHeadlineContext } from "./hooks/useHeadlineContext"
 import { fetchTopHeadlines } from "./logic/getTopHeadlines"
 import { TopHeadlines } from "./components/TopHeadlines"
+import { Search } from "./components/Search"
 
 function App() {
   // Esta funcion devuelve los valores del fetch que no son null ni undefined
@@ -29,8 +30,9 @@ useEffect(()=> {
       <header className="w-screen p-4 bg-primary-blue">
         <h1 className="font-black text-4xl text-white">My Newslatter</h1>
       </header>
-      <main className=" bg-dark-blue mt-16">
+      <main className="mt-16 flex flex-col gap-8">
         <TopHeadlines />
+        <Search />
       </main>
     </>
   )

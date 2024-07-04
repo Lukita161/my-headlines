@@ -4,7 +4,7 @@ import { useHeadlineContext } from "../hooks/useHeadlineContext"
 export const TopHeadlines = ()=> {
     const { state } = useHeadlineContext() 
     return (
-        <>
+        <div className=" bg-dark-blue">
             <div className="border-b-4 border-light-blue p-4 flex justify-between items-center">
                 <h1 className="text-white text-2xl mb-0 font-medium">Top Headlines</h1>
             </div>
@@ -13,6 +13,6 @@ export const TopHeadlines = ()=> {
                         <HeadlineCart />
                     )}
             </div>
-        </>
+        </div>
     )
 }

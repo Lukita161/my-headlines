@@ -1,30 +1,20 @@
 import { FinallHeadline, Headlines } from '../types'
-import { verifiedHeadlinesSchema } from '../schema/schemas'
-import * as v from 'valibot'
+import { filterValidHeadlines } from '../logic/filterHeadlines'
 
 export type Actions = 
 { type: 'get-top-headlines', payload: {result: Headlines}} |
-{ type: 'set-error-in-top-headlines' }
+{ type: 'set-error-in-top-headlines' } |
+{type: 'search-headlines', payload: {search: string}}
 
 export type initialStateType = {
     headlines: FinallHeadline
+    searchedHeadlines: FinallHeadline
     error: boolean
 }
-/*const filterValidHeadlines = (array: Headlines)=> { //⚠️⚠️⚠️ El error del state viene de aca, solucionarlo urgente
-    const filteredArray = array.filter(object => Object.values(object).every(value => value !== null && value !== undefined && value !== ''))
-    const verifySchema = v.safeParse(verifiedHeadlinesSchema, filteredArray) 
-    return verifySchema
-}*/
-const filterValidHeadlines = (array: Headlines) => {
-    const filteredArray = array.filter(object => {
-        const allValuesValid = Object.values(object).every(value => value !== null && value !== undefined)
-        return allValuesValid
-    })
-    const verifySchema = v.safeParse(verifiedHeadlinesSchema, filteredArray)
-    return verifySchema
-}
+
 export const initialState: initialStateType = {
     headlines:[],
+    searchedHeadlines: [],
     error: false
 }
 
@@ -41,6 +31,12 @@ export const HeadlineReducer = (state: initialStateType = initialState, actions:
             ...state,
             headlines: [],
             error: true
+        }
+    }
+    if(actions.type === 'search-headlines') {
+        console.log(actions.payload.search)
+        return {
+            ...state
         }
     }
 
