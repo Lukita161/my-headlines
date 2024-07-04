@@ -1,34 +1,42 @@
-
-import { FinallHeadline, countryListType, countrySelect } from '../types'
+import { FinallHeadline, Headlines } from '../types'
+import { verifiedHeadlinesSchema } from '../schema/schemas'
+import * as v from 'valibot'
 
 export type Actions = 
-{type: 'select-country-to-search', payload: {country: countryListType}} |
-{ type: 'get-top-headlines', payload: {result: FinallHeadline}} |
+{ type: 'get-top-headlines', payload: {result: Headlines}} |
 { type: 'set-error-in-top-headlines' }
 
-type initialStateType = {
-    country: countrySelect['code']
+export type initialStateType = {
     headlines: FinallHeadline
     error: boolean
 }
-
-
-export const initialState = {
-    country: '',
-    headlines: [],
+/*const filterValidHeadlines = (array: Headlines)=> { //⚠️⚠️⚠️ El error del state viene de aca, solucionarlo urgente
+    const filteredArray = array.filter(object => Object.values(object).every(value => value !== null && value !== undefined && value !== ''))
+    const verifySchema = v.safeParse(verifiedHeadlinesSchema, filteredArray) 
+    return verifySchema
+}*/
+export const initialState: initialStateType = {
+    headlines:[],
     error: false
 }
 
 export const HeadlineReducer = (state: initialStateType = initialState, actions: Actions)=> {
     if(actions.type === 'get-top-headlines') { // Este action setea el state de topHeadlines desde una peticion fetch
+        //const newHeadlines = filterValidHeadlines(actions.payload.result)
+        const filteredArray = actions.payload.result.filter(object => {
+            const allValuesValid = Object.values(object).every(value => value !== null && value !== undefined);
+            return allValuesValid;
+        });
+        const verifySchema = v.safeParse(verifiedHeadlinesSchema, filteredArray)
         return {
             ...state,
-            headlines: actions.payload.result
+            headlines: verifySchema.output
         }
     }
     if(actions.type === 'set-error-in-top-headlines') { // Si falla el fetch mostramos un error en App.tsx
         return {
             ...state,
+            headlines: [],
             error: true
         }
     }
