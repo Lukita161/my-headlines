@@ -1,17 +1,20 @@
-import { useState } from "react"
 import { useHeadlineContext } from "../hooks/useHeadlineContext"
+import { fetchSearchedHeadlines } from "../logic/getHeadlines"
 
 export const Search = ()=> {
-    const [input, setInput] = useState('')
     const { dispatch } = useHeadlineContext()
-
+    const fetch = async(search: string)=> {
+        const response = await fetchSearchedHeadlines(search)
+        console.log(response)
+        dispatch({type: 'search-headlines', payload: {response: response!.output}})
+    } 
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>)=> {
-        setInput(e.target.value)
-
         setTimeout(()=> {
-            dispatch({type: 'search-headlines', payload: {search: input}})
-        }, 300)
+            fetch(e.target.value)
+        },1000)
 }
+
     return (
         <div className="flex bg-dark-blue w-8/12 mx-auto h-[6rem] md:h-16 rounded shadow items-start justify-center">
             <form className="flex md:flex-row flex-col gap-5 p-2 items-center justify-center">

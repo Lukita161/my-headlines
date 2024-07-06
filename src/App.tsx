@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useHeadlineContext } from "./hooks/useHeadlineContext"
-import { fetchTopHeadlines } from "./logic/getTopHeadlines"
+import { fetchTopHeadlines } from "./logic/getHeadlines"
 import { TopHeadlines } from "./components/TopHeadlines"
 import { Search } from "./components/Search"
 
