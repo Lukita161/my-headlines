@@ -5,7 +5,6 @@ export const Search = ()=> {
     const { dispatch } = useHeadlineContext()
     const fetch = async(search: string)=> {
         const response = await fetchSearchedHeadlines(search)
-        console.log(response)
         dispatch({type: 'search-headlines', payload: {response: response!.output}})
     } 
     

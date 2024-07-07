@@ -12,7 +12,6 @@ export const headlinesSchema = v.array(
 
 export const verifiedHeadlinesSchema = v.array(
     v.object({
-        author: v.string(),
         description: v.string(),
         title: v.string(),
         url: v.string(),
@@ -27,12 +26,3 @@ export const HeadlineSchema = v.object({
         url: v.string(),
         urlToImage: v.string()
 })
-
-export const SearchedHeadlineSchema = v.array(
-    v.object({
-        description: v.nullable(v.string()),
-        title: v.nullable(v.string()),
-        url: v.nullable(v.string()),
-        urlToImage: v.nullable(v.string()),
-    })
-)

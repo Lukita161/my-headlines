@@ -1,10 +1,10 @@
-import { FinallHeadline, Headlines, SearchedHeadline } from '../types'
+import { FinallHeadline, Headlines } from '../types'
 import { filterValidHeadlines } from '../logic/filterHeadlines'
 
 export type Actions = 
 { type: 'get-top-headlines', payload: {result: Headlines}} |
 { type: 'set-error-in-top-headlines' } |
-{type: 'search-headlines', payload: {response: SearchedHeadline}}
+{type: 'search-headlines', payload: {response: Headlines}}
 
 export type initialStateType = {
     headlines: FinallHeadline
@@ -34,10 +34,10 @@ export const HeadlineReducer = (state: initialStateType = initialState, actions:
         }
     }
     if(actions.type === 'search-headlines') { // Cambiar la logica, aca setear directamente la busqueda, y ejecutar la busqueda en si en el componente Search
-        
+        const validSearch = filterValidHeadlines(actions.payload.response)
         return {
             ...state,
-            searchedHeadlines: actions.payload.response
+            searchedHeadlines: validSearch.output
         }
     }
 
