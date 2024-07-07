@@ -1,14 +1,10 @@
 import { useHeadlineContext } from "../hooks/useHeadlineContext"
-import { Headline } from "../types"
+import { shortDescription } from "../logic/filterHeadlines"
 
 export const HeadlineCart = ()=> {
     const { state } = useHeadlineContext()
 
-    const shortDescription = (description: Headline['description']) => {
-        const shortyDescription = description.search(/[.,]/)
-        const descriptions = description.slice(0, shortyDescription)
-        return descriptions
-    }
+
     return (
         <>
             {state.headlines.map(headline => (

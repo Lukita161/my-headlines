@@ -9,18 +9,21 @@ export type Actions =
 export type initialStateType = {
     headlines: FinallHeadline
     searchedHeadlines: FinallHeadline
+    loadingHeadlines: boolean
     error: boolean
 }
 
 export const initialState: initialStateType = {
     headlines:[],
     searchedHeadlines: [],
+    loadingHeadlines: false,
     error: false
 }
 
 export const HeadlineReducer = (state: initialStateType = initialState, actions: Actions)=> {
     if(actions.type === 'get-top-headlines') { // Este action setea el state de topHeadlines desde una peticion fetch
         const validHeadlines = filterValidHeadlines(actions.payload.result)
+        
         return {
             ...state,
             headlines: validHeadlines.output

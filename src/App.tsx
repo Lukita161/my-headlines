@@ -2,12 +2,13 @@ import { useEffect } from "react"
 import { useHeadlineContext } from "./hooks/useHeadlineContext"
 import { fetchTopHeadlines } from "./logic/getHeadlines"
 import { TopHeadlines } from "./components/TopHeadlines"
-import { Search } from "./components/Search"
+import { Search } from "./components/SearchedComponents/Search"
+import { SearchedHeadlines } from "./components/SearchedComponents/SearchedHeadlines"
 
 function App() {
   // Esta funcion devuelve los valores del fetch que no son null ni undefined
   
-const { dispatch } = useHeadlineContext()
+const { state,dispatch } = useHeadlineContext()
 // Este useEffect setea el state del reducer, TO DO: 💠Manejar el error, osea si falla mostrar componente, y mover la funcion getHeadlines a carpeta logic
 useEffect(()=> {
       const getHeadlines = async()=> {
@@ -32,7 +33,13 @@ useEffect(()=> {
       </header>
       <main className="mt-16 flex flex-col gap-8">
         <TopHeadlines />
-        <Search />
+          <Search />
+          <div className="bg-dark-blue flex flex-col gap-8">
+            {state.searchedHeadlines.length > 0 && (
+              <SearchedHeadlines />
+            )}
+
+          </div>
       </main>
     </>
   )
